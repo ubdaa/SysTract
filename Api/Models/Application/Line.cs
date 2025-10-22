@@ -1,4 +1,4 @@
-namespace Api.Models.Public;
+namespace Api.Models.Application;
 
 public enum LineType
 {
@@ -16,4 +16,6 @@ public class Line
     public required string FirstVan { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
+    
+    public ICollection<Schedule> Schedules { get; set; } = new List<Schedule>();
 }

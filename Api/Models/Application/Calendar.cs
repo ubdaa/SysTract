@@ -1,12 +1,6 @@
 using System.Text.Json;
 
-namespace Api.Models.Public;
-
-public class CalendarConfig
-{
-    public Guid Id { get; set; }
-    public required string Name { get; set; }
-}
+namespace Api.Models.Application;
 
 public class Calendar
 {
@@ -15,6 +9,6 @@ public class Calendar
     public DateTime CreatedAt { get; set; }
     public DateTime FileUpdatedAt { get; set; }
     public DateTime UpdateAt { get; set; }
-    public JsonDocument Json { get; set; }
-    public List<CalendarConfig> Configs { get; set; }
+    public JsonDocument Content { get; set; } = null!;
+    public ICollection<CalendarConfig> Configs { get; set; } = new List<CalendarConfig>();
 }

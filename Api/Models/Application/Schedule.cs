@@ -1,4 +1,4 @@
-namespace Api.Models.Public;
+namespace Api.Models.Application;
 
 public class Schedule
 {
@@ -8,4 +8,7 @@ public class Schedule
     public string? HalfDay { get; set; }
     public string? Night { get; set; }
     public string? Offbeat { get; set; }
+    
+    public Guid? LineId { get; set; }
+    public Line? Line { get; set; }
 }

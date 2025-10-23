@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Api.Models.Logging;
 
-[Table("logs")]
+[Table("logs_entries")]
 public class LogEntry
 {
     [Key]

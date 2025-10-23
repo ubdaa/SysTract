@@ -1,5 +1,4 @@
 using Api.Data;
-using Api.Data.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Serilog.Events;
@@ -16,18 +15,7 @@ builder.Configuration
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(connectionString, npgsqlOptions =>
-    {
-        npgsqlOptions.MigrationsHistoryTable("__EFMigrationsHistory", SchemaConfiguration.Application);
-        npgsqlOptions.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
-    }));
-
-builder.Services.AddDbContext<LoggingDbContext>(options =>
-    options.UseNpgsql(connectionString, npgsqlOptions =>
-    {
-        npgsqlOptions.MigrationsHistoryTable("__EFMigrationsHistory", SchemaConfiguration.Logging);
-        npgsqlOptions.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
-    }));
+    options.UseNpgsql(connectionString));
 
 // Configuration de Serilog avec PostgreSQL
 Log.Logger = new LoggerConfiguration()

@@ -1,3 +1,4 @@
+using Api.Data.Configurations;
 using Api.Models.Application;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +18,8 @@ public class ApplicationDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
+        modelBuilder.HasDefaultSchema(SchemaConfiguration.Application);
         
         modelBuilder.Entity<Line>()
             .Property(l => l.Type)

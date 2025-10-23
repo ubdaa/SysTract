@@ -18,4 +18,5 @@ public class Line
     public DateTime UpdatedAt { get; set; }
     
     public ICollection<Schedule> Schedules { get; set; } = new List<Schedule>();
+    public ICollection<TractionPlace> TractionPlaces { get; set; } = new List<TractionPlace>();
 }

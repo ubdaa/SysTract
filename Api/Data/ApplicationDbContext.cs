@@ -18,6 +18,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<CalendarConfig> CalendarConfigs { get; set; }
     public DbSet<Line> Lines { get; set; }
     public DbSet<Schedule> Schedules { get; set; }
+    public DbSet<TractionPlace> TractionPlaces { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -43,6 +44,12 @@ public class ApplicationDbContext : DbContext
             .HasMany(l => l.Schedules)
             .WithOne(s => s.Line)
             .HasForeignKey(s => s.LineId)
+            .OnDelete(DeleteBehavior.Cascade);
+        
+        modelBuilder.Entity<Line>()
+            .HasMany(l => l.TractionPlaces)
+            .WithOne(tp => tp.Line)
+            .HasForeignKey(tp => tp.LineId)
             .OnDelete(DeleteBehavior.Cascade);
         
         modelBuilder.Entity<Calendar>()
